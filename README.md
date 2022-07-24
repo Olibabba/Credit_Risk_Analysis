@@ -37,6 +37,8 @@ The RandomOverSampler proved to be a modest model with low precision and recall 
 
 ### SMOTE
 
+SMOTE also had a modest performance but had slightly worse performance applied to the low credit risk.
+
 **Results**
 - Accuracy: 64%
 - High-Risk Precision: 0.01
@@ -49,6 +51,8 @@ The RandomOverSampler proved to be a modest model with low precision and recall 
 ![SMOTE](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/SMOTE.png)
 
 ### Cluster Centroids
+
+Cluster Centroids had a simliarly modest precision and recall for high credit risk, however this model had the most False-Positives, and thus the lowest low credit risk recall. This may be attributed to the undersampling tecnique itself, which inherently uses a smaller data set to train.
 
 **Results**
 - Accuracy: 53%
@@ -63,6 +67,8 @@ The RandomOverSampler proved to be a modest model with low precision and recall 
 
 ### SMOTEEN
 
+The combination over and under sampling gave a small improvement to the individual models when predicting high credit risk. It landed between the individual models when predicting low credit risk however and still had a large number of False-Positives.
+
 **Results**
 - Accuracy: 62%
 - High-Risk Precision: 0.01
@@ -76,6 +82,8 @@ The RandomOverSampler proved to be a modest model with low precision and recall 
 
 ### Balanced Random Forest
 
+The Balanced Random Forest significantly reduced the number of False-Positives compared to the previous models. While this gave it a higher high-risk precision and F1 and a much higher low-risk recall and F1, it performed almost the same as the SMOTEEN model in True-Positive and False-Negative predictions.
+
 **Results**
 - Accuracy: 79%
 - High-Risk Precision: 0.04
@@ -86,10 +94,16 @@ The RandomOverSampler proved to be a modest model with low precision and recall 
 - Low-Risk F1 Score: 0.95
 
 ![Balanced Random Forest](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/BalancedRandomForest.png)
+
+Top 15 Important Features:
 ![BRF Important Features](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/brf_features_list.png)
+
+Importance of All Features:
 ![BRF Features Plot](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/brf_features_plt.png)
 
 ### ADA Boost
+
+Easy Ensemble's ADA Boost showed significant improvements across all predictions. With the lowest number of False-Negatives and False-Positives by a wide margin, and the highest number of True-Positives, this model's high-risk F1 score is double the next best model.
 
 **Results**
 - Accuracy: 92%
@@ -103,6 +117,8 @@ The RandomOverSampler proved to be a modest model with low precision and recall 
 ![ADA Boost](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/ADABoost.png)
 
 ### XGBoost
+
+The XGBoost surprisingly performed exaclty the same as the
 
 **Results**
 - Accuracy: 92%
