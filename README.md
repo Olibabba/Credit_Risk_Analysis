@@ -96,9 +96,11 @@ The Balanced Random Forest significantly reduced the number of False-Positives c
 ![Balanced Random Forest](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/BalancedRandomForest.png)
 
 Top 15 Important Features:
+
 ![BRF Important Features](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/brf_features_list.png)
 
 Importance of All Features:
+
 ![BRF Features Plot](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/brf_features_plt.png)
 
 ### ADA Boost
@@ -118,20 +120,22 @@ Easy Ensemble's ADA Boost showed significant improvements across all predictions
 
 ### XGBoost
 
-The XGBoost surprisingly performed exaclty the same as the
+The XGBoost model showed impressive high credit risk precision with only 5 False-Positives (compared to the next closest 975), This accomplishment was overshadowed by the model also having the lowest number of True-Positives and the highest number of False-Negatives.
 
 **Results**
-- Accuracy: 92%
-- High-Risk Precision: 0.07
-- High-Risk Recall: 0.90
-- High-Risk F1 Score: 0.14
+- Accuracy: 71%
+- High-Risk Precision: 0.88
+- High-Risk Recall: 0.41
+- High-Risk F1 Score: 0.56
 - Low-Risk Precision: 1.00
-- Low-Risk Recall: 0.94
-- Low-Risk F1 Score: 0.97
+- Low-Risk Recall: 1
+- Low-Risk F1 Score: 1
 
 ![XGBoost](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/XGBoost.png)
 
 ### LightGBM
+
+Light GBM performed alsmot the same as the XGBoost but with two more False-Positives
 
 **Results**
 - Accuracy: 71%
@@ -145,3 +149,20 @@ The XGBoost surprisingly performed exaclty the same as the
 ![LightGBM](https://github.com/Olibabba/Credit_Risk_Analysis/blob/main/resources/LGBM.png)
 
 ## Summary
+
+In evaluating these models it is important to pay particular attention to the high-risk recall. When looking for high credit risk, which is exeedingly rare according to this dataset, it is more desirable to minimize the false negatives. To put it another way, it is important
+to minimize the number of high-risk borrowers that are incorrectly labeled as low-risk. 
+
+In this context we can see that the under and over sampling had very similar and modest results, with the combination of the two showing a slight improvement in high-risk recall.
+
+The popular XGBoost and Light GBM actually had the worst high risk recall, though these were notable in their very high precision. So if it is important to leadership that fewer borrowers are incorrectly labeled high-risk when they are in fact, low-risk, then these models would deserve a second look.
+
+However, the ensemble methods showed better overall perfomrmace, and the Easy Ensemble's ADA Boost had by far the best performance.
+
+The ADA Boost had incredible recall with only 9 False-Negatives, correctly identified far more True-Positives, and kept the False-Positives lower then all models except the XGBoost and Light GBM. 
+
+It should be no surprise that my recommendation is to use the ADA Boost. 
+
+The disclaimer here is that because the number of high-risk borrowers is so low, our improvements against high-risk borrowers is a matter of correctly identifying an extra dozen or two. For example the ADABoost had 9 False-Negatives, while the next best had 28. 
+
+On the other hand, the number of False-Positives is on the scale of thousands. So even with the ADABoost model there could be almost a thousand low-risk borrowers incorrectly identified as high-risk.
